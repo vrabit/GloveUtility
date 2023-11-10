@@ -4,6 +4,8 @@ Spyder Editor
 
 This is a temporary script file.
 ser.close() to close port 
+
+Testing that updates work
 """
 import csv
 from serial import*
