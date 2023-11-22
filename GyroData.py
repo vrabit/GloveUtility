@@ -26,13 +26,13 @@ def toInt(xRaw):
 def toCSV(GyroX, GyroY, GyroZ, flexThumb, flexIndex, flexMiddle, flexRing, flexPinky):
     with open("sensorFile.csv", 'a', newline = '') as file:
         write = csv.writer(file)
-        write.writerow([GyroX,GyroY,GyroZ,flexThumb,flexIndex,flexMiddle,flexRing,flexPinky])
+        write.writerow([GyroX,GyroY,GyroZ,flexThumb,flexIndex,flexMiddle,flexRing,flexPinky,5])
     
     
 def main():
     with open("sensorFile.csv", 'w', newline = '') as file:
         write = csv.writer(file)
-        header = ['GyroX', 'GyroY', 'GyroZ', 'Thumb', 'Index', 'Middle', 'Ring', 'Pinky']
+        header = ['GyroX', 'GyroY', 'GyroZ', 'Thumb', 'Index', 'Middle', 'Ring', 'Pinky', 'Gesture']
         write.writerow(header)
     
     while True:
