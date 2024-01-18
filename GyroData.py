@@ -10,7 +10,7 @@ Testing that updates work
 import csv
 from serial import*
 
-serialPort= 'COM4'
+serialPort= 'COM3'
 baudRate = 19200
 ser = Serial(serialPort,baudRate,timeout = 1)
 
@@ -26,7 +26,7 @@ def toInt(xRaw):
 def toCSV(GyroX, GyroY, GyroZ, flexThumb, flexIndex, flexMiddle, flexRing, flexPinky):
     with open("sensorFile.csv", 'a', newline = '') as file:
         write = csv.writer(file)
-        write.writerow([GyroX,GyroY,GyroZ,flexThumb,flexIndex,flexMiddle,flexRing,flexPinky,2])
+        write.writerow([GyroX,GyroY,GyroZ,flexThumb,flexIndex,flexMiddle,flexRing,flexPinky,5])
     
     
 def main():
