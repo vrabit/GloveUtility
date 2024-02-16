@@ -9,10 +9,16 @@ Testing that updates work
 """
 import csv
 from serial import*
+import atexit
 
 serialPort= 'COM3'
 baudRate = 19200
 ser = Serial(serialPort,baudRate,timeout = 1)
+
+def close_port():
+    ser.close()
+    
+atexit.register(close_port)
 
 def toInt(xRaw):
     flip = 65535
@@ -26,7 +32,7 @@ def toInt(xRaw):
 def toCSV(GyroX, GyroY, GyroZ, flexThumb, flexIndex, flexMiddle, flexRing, flexPinky):
     with open("sensorFile.csv", 'a', newline = '') as file:
         write = csv.writer(file)
-        write.writerow([GyroX,GyroY,GyroZ,flexThumb,flexIndex,flexMiddle,flexRing,flexPinky,5])
+        write.writerow([GyroX,GyroY,GyroZ,flexThumb,flexIndex,flexMiddle,flexRing,flexPinky,6])
     
     
 def main():
@@ -35,6 +41,7 @@ def main():
         header = ['GyroX', 'GyroY', 'GyroZ', 'Thumb', 'Index', 'Middle', 'Ring', 'Pinky', 'Gesture']
         write.writerow(header)
     
+    data = ser.readline()
     while True:
         data = ser.readline()
         
@@ -57,5 +64,10 @@ def main():
         #print(data)
         
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("keyboard interrupt")
+    finally:
+        ser.close()
     

@@ -1,0 +1,1 @@
+Same format as before, Index 6 refers to "open hand"
